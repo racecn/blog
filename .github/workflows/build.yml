@@ -25,7 +25,9 @@ jobs:
           source $HOME/.bashrc
 
       - name: Build project
-        run: bun build
+        run: |
+          source $HOME/.bashrc
+          bun build
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
