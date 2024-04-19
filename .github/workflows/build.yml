@@ -26,7 +26,7 @@ jobs:
 
       - name: Build project
         run: |
-          ~/.bun/bin/bun build src/main.ts
+          ~/.bun/bin/bun build src/routes/+page.svelte
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
@@ -49,7 +49,7 @@ jobs:
         run: powershell -c "irm bun.sh/install.ps1 | iex"
 
       - name: Build project
-        run: bun build src/main.ts
+        run: bun build src/routes/+page.svelte
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
