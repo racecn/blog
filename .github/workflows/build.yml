@@ -19,7 +19,7 @@ jobs:
           deno-version: '1.x'
 
       - name: Install dependencies
-        run: deno install --unstable --allow-read --allow-write -n bun https://deno.land/x/bun/cli.ts
+        run: deno install --unstable --allow-read --allow-write -n bun https://bun.sh/install
 
       - name: Build project
         run: bun build
