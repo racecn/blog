@@ -18,8 +18,13 @@ jobs:
         with:
           deno-version: '1.x'
 
-      - name: Install dependencies
-        run: deno install --unstable --allow-read --allow-write -n bun https://bun.sh/install
+      - name: Install Bun
+        run: |
+          if [ "$RUNNER_OS" == "Windows" ]; then
+            powershell -c "irm bun.sh/install.ps1 | iex"
+          else
+            curl -fsSL https://bun.sh/install.sh | sh
+          fi
 
       - name: Build project
         run: bun build
