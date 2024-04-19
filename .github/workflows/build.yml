@@ -18,13 +18,31 @@ jobs:
         with:
           deno-version: '1.x'
 
-      - name: Install Bun
-        run: |
-          if [ "$RUNNER_OS" == "Windows" ]; then
-            powershell -c "irm bun.sh/install.ps1 | iex"
-          else
-            curl -fsSL https://bun.sh/install.sh | sh
-          fi
+      - name: Install Bun (Linux/macOS)
+        run: curl -fsSL https://bun.sh/install.sh | sh
+
+      - name: Build project
+        run: bun build
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifact
+          path: build
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Deno
+        uses: denolib/setup-deno@v2
+        with:
+          deno-version: '1.x'
+
+      - name: Install Bun (Windows)
+        run: powershell -c "irm bun.sh/install.ps1 | iex"
 
       - name: Build project
         run: bun build
@@ -36,7 +54,7 @@ jobs:
           path: build
 
   deploy:
-    needs: build
+    needs: [build, build-windows]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
 
