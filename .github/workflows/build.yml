@@ -49,7 +49,7 @@ jobs:
         run: powershell -c "irm bun.sh/install.ps1 | iex"
 
       - name: Build project
-        run: bun build src/routes/+page.svelte
+        run: ~/.bun/bin/bun build src/routes/+page.svelte --output build
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
