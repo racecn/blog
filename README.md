@@ -1,38 +1,29 @@
-# create-svelte
+# 🌌 S3 - Real-Time Solar System Simulation
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+The real-time solar system simulation project aims to provide a modern, interactive tool for users to explore and understand our local solar system. This educational tool offers an engaging experience for learners (middle school and above), featuring realistic planetary appearances and accurate information to ensure an immersive learning experience.
 
-## Creating a project
+## 🚀 Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+### Design
+- 📷 **Manipulating the Camera in 3D Space:** Users can move, zoom, pan, or rotate the camera to view celestial objects and planetary interactions.
+- 💡 **Lighting System:** Shadows and basic reflections are cast from planet to planet, with all light in the simulation provided by the Sun.
+- 🔄 **Realistic Planetary Motion & Orbits:** Orbital information, speeds, and rotations are based on current positional data of planets, moons, and other space objects.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+### Tasks
+- ➕ **Create New Object with an Orbit of the User's Choice:** Users can create new objects within the simulation, specifying parameters like mass, size, initial velocity, and orbit characteristics.
+- 👁️ **Hide and Show Objects:** Users can manage the visibility of objects, choosing to hide or show individual objects or groups.
+- ⏯️ **Pause, Resume, Fast-Forward Simulation:** Users can manipulate the flow of time within the simulation, pausing, resuming, or fast-forwarding to observe specific moments or events.
+- 💾 **Saving Features:** Users can save their current simulation state for future reference, including object positions, velocities, and other parameters.
+- 🎮 **Interactive Camera Control:** Users can adjust the camera perspective dynamically to focus on specific objects or regions of interest.
+- ℹ️ **View Planet Information:** Detailed information about planets, moons, and celestial bodies is accessible, including mass, radius, surface features, and orbital parameters.
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+## ❓ Help
 
-## Developing
+For any assistance or inquiries regarding the simulation, please refer to the following contact information:
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+ >   Email: [racecn@gmail.com]
 
-```bash
-npm run dev
+Feel free to reach out to me with any questions, feedback, or suggestions you may have. We are here to help!
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
 
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Installation Link
