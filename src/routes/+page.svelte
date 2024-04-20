@@ -496,7 +496,7 @@ const onKeyUp = (event: KeyboardEvent) => {
 
     <div id="controls" class="flex justify-between items-center mb-4">
         <button id="play-pause" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Pause</button>
-        <button class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600" x-on:click="composer.passes[1].enabled = !composer.passes[1].enabled">Toggle Bloom</button>
+        <button class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600" on:click={() => composer.passes[1].enabled = !composer.passes[1].enabled}>Toggle Bloom</button>
         <button class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600" x-on:click="handleToggleWireframe()">Toggle Wireframe</button>
         <input type="range" id="speed-slider" min="0.1" max="2" step="0.1" x-bind:value="speed" class="w-24">
     </div>
