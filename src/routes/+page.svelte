@@ -1,5 +1,6 @@
 <script lang="ts">
     import { ActionIcon, IconRenderer, Input, InputWrapper } from '@svelteuidev/core';
+    import { RangeSlider } from '@skeletonlabs/skeleton';
     import { GithubLogo } from 'radix-icons-svelte';
     import { Button } from '@svelteuidev/core';
     import { browser } from '$app/environment'; 
@@ -17,6 +18,11 @@
     let isMouseLocked = false;
     let isPaused = false;
     let speed = 1;
+
+    let planetDistance = 1;
+
+    let maxPlanetDistance = 50;
+    let minPlanetDistance = 0.1;
 
     let planets: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>[] = [];
     let planetSpeeds: number[] = [];
@@ -484,47 +490,63 @@ const onKeyUp = (event: KeyboardEvent) => {
     }
 </style>
 
-<section id="menu">
-    <div id="fps"></div>
-    <div id="controls">
-        <Button id="play-pause" variant="primary">Pause</Button>
-        <!-- Button to toggle bloom-->
-        <Button variant="secondary" on:click={() => composer.passes[1].enabled = !composer.passes[1].enabled}>Toggle Bloom</Button> 
-        <Button variant="secondary" on:click={() => handleToggleWireframe()}>Toggle Wireframe</Button>
-        <Input type="range" id="speed-slider" min="0.1" max="2" step="0.1" bind:value={speed} />
+<section id="menu" class="p-4 bg-gray-200 flex flex-col border align-middle items">
+
+    <div id="fps" class="mb-4"></div>
+
+    <div id="controls" class="flex justify-between items-center mb-4">
+        <button id="play-pause" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Pause</button>
+        <button class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600" x-on:click="composer.passes[1].enabled = !composer.passes[1].enabled">Toggle Bloom</button>
+        <button class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600" x-on:click="handleToggleWireframe()">Toggle Wireframe</button>
+        <input type="range" id="speed-slider" min="0.1" max="2" step="0.1" x-bind:value="speed" class="w-24">
     </div>
-    <!-- Help (keybinds, link to github, etc)-->
-    <div id="help">
+
+    <div id="help" class="mb-4">
+        <p>Click on the simulation to begin! It will lock the mouse.</p>
         <p>WASD to move</p>
-        <p>Click on the simulation to lock the mouse</p>
         <p>Move your mouse to look around</p>
         <p>Press ESC to un-lock your mouse</p>
         <p>Press Shift to move faster</p>
         <p>Press Space to move up</p>
         <p>Press Ctrl to move down</p>
-
+        <br/>
+        <p>Get more help on our GitHub repository!</p>
         <ActionIcon color='gray' variant='hover' root='a'
             href="https://github.com/racecn/S3"
         ><GithubLogo size={64} /></ActionIcon>
     </div>
 
-    <section id="create-planet">
-        <h2>Add a Planet</h2>
-        <form id="addPlanetForm">
-            <label for="planetName">Name:</label>
-            <input type="text" id="planetName" name="planetName" required><br><br>
-            <label for="planetDistance">Distance from Sun:</label>
-            <input type="number" id="planetDistance" name="planetDistance" step="0.01" required><br><br>
-            <label for="planetRadius">Radius:</label>
-            <input type="number" id="planetRadius" name="planetRadius" step="0.01" required><br><br>
-            <label for="planetSpeed">Speed:</label>
-            <input type="number" id="planetSpeed" name="planetSpeed" step="0.0001" required><br><br>
-            <button type="submit">Add Planet</button>
-            
+    <section id="create-planet" class="p-4 flex">
+        <h2 class="text-2xl font-bold mb-4">Add a Planet</h2>
+        <form id="addPlanetForm" class="space-y-4">
+            <div class="flex flex-col">
+                <label for="planetName" class="mb-1">Planet Name:</label>
+                <input class="input border border-gray-300 rounded px-2 py-1" type="text" id="planetName" name="planetName" required>
+            </div>
+    
+            <div class="flex flex-col">
+                <label for="planetDistance" class="mb-1">Distance from Sun:</label>
+                <RangeSlider bind:value={planetDistance} max="25" step="1" class="w-full">
+                    <div class="flex justify-between items-center">
+                        <div class="font-bold">Kilometers</div>
+                        <div class="text-xs">{planetDistance} / 25k km</div>
+                    </div>
+                </RangeSlider>
+            </div>
+    
+            <div class="flex flex-col">
+                <label for="planetRadius" class="mb-1">Radius:</label>
+                <input class="input border border-gray-300 rounded px-2 py-1" type="number" id="planetRadius" name="planetRadius" step="0.01" required>
+            </div>
+    
+            <div class="flex flex-col">
+                <label for="planetSpeed" class="mb-1">Speed:</label>
+                <input class="input border border-gray-300 rounded px-2 py-1" type="number" id="planetSpeed" name="planetSpeed" step="0.0001" required>
+            </div>
+    
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Planet</button>
         </form>
-    </section>  
-
-
+    </section>
 </section>
 
 
